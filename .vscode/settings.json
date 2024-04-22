@@ -1,0 +1,20 @@
+{
+    "C_Cpp.default.compilerPath": "C:\\msys64\\ucrt64\\bin\\gcc.exe",
+    "terminal.integrated.profiles.windows": {
+        "MSYS2": {
+            "path": "C:\\msys64\\usr\\bin\\bash.exe",
+            "args": ["--login", "-i"]
+        },
+        "MSYS2 MinGW 64-bit": {
+            "path": "C:\\msys64\\mingw64\\bin\\bash.exe",
+            "args": ["--login", "-i"]
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "bash (MSYS2)",
+    "C_Cpp.default.includePath": [
+        "C:\\msys64\\mingw64\\include"
+    ],
+    "C_Cpp.default.intelliSenseMode": "gcc-x64",
+    "C_Cpp.default.configurationProvider": "ms-vscode.cpptools",
+    "git.path": "C:\\Program Files\\Git\\bin\\git.exe"
+}
