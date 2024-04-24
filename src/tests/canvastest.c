@@ -28,6 +28,7 @@ int clean_suite1(void) { return 0; }
 
 */
 
+/*
 void testCreatingCanvas(void) {
   Canvas c = canvas(10, 20);
 
@@ -36,6 +37,7 @@ void testCreatingCanvas(void) {
 
   free((void *)c.pixels);  // prob not needed for app though
 }
+*/
 
 /*
         ​Scenario​: Writing pixels to a canvas
@@ -45,19 +47,18 @@ void testCreatingCanvas(void) {
 ​ 	  ​Then​ pixel_at(c, 2, 3) = red
 */
 
-/*
 void testWritingPixelsToCanvas(void) {
-    Canvas c = canvas( 10, 20 );
-    Color red = color(1, 0, 0);
+  Canvas c = canvas(10, 20);
+  Color red = color(1, 0, 0);
 
-    write_pixel(c, 2, 3, red);
-    Color out = pixel_at(c, 2, 3);
+  write_pixel(c, 2, 3, red);
+  Color out = pixel_at(c, 2, 3);
 
-    CU_ASSERT(out.red == 255);
-    CU_ASSERT(out.green == 0);
-    CU_ASSERT(out.blue == 0);
+  CU_ASSERT(out.red == 255);
+  CU_ASSERT(out.green == 0);
+  CU_ASSERT(out.blue == 0);
 
-    free((void *) c.pixels); // prob not needed for app though
+  free((void *)c.pixels);  // prob not needed for app though
 }
 
 /*
@@ -226,11 +227,11 @@ int main() {
 
   /* add the tests to the suite */
   /* NOTE - ORDER IS IMPORTANT */
-  if (NULL ==
-      CU_add_test(pSuite, "test of testCreatingCanvas", testCreatingCanvas)
-      /*|| NULL == CU_add_test(pSuite, "test of testWritingPixelsToCanvas",
-      testWritingPixelsToCanvas)
-      || NULL == CU_add_test(pSuite, "test of testConstructingPPMHeader",
+  if (  // NULL == CU_add_test(pSuite, "test of testCreatingCanvas",
+        // testCreatingCanvas)
+      NULL == CU_add_test(pSuite, "test of testWritingPixelsToCanvas",
+                          testWritingPixelsToCanvas)
+      /*| NULL == CU_add_test(pSuite, "test of testConstructingPPMHeader",
       testConstructingPPMHeader)
       || NULL == CU_add_test(pSuite, "test of testConstructingPPMPixelData",
       testConstructingPPMPixelData)
