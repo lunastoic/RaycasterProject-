@@ -47,6 +47,7 @@ void testCreatingCanvas(void) {
 ​ 	  ​Then​ pixel_at(c, 2, 3) = red
 */
 
+/*
 void testWritingPixelsToCanvas(void) {
   Canvas c = canvas(10, 20);
   Color red = color(1, 0, 0);
@@ -73,23 +74,21 @@ void testWritingPixelsToCanvas(void) {
 ​ 	​    """
 */
 
-/*
-void testConstructingPPMHeader(void){
-    Canvas c = canvas(5, 3);
-    char* ppm = canvas_to_ppm(c);
+void testConstructingPPMHeader(void) {
+  Canvas c = canvas(5, 3);
+  char* ppm = canvas_to_ppm(c);
 
-    char* line1 = strtok(ppm, "\n");
-    char* line2 = strtok(NULL, "\n");
-    char* line3 = strtok(NULL, "\n");
+  char* line1 = strtok(ppm, "\n");
+  char* line2 = strtok(NULL, "\n");
+  char* line3 = strtok(NULL, "\n");
 
-    CU_ASSERT_STRING_EQUAL(line1, "P3");
-    CU_ASSERT_STRING_EQUAL(line2, "5 3");
-    CU_ASSERT_STRING_EQUAL(line3, "255");
+  CU_ASSERT_STRING_EQUAL(line1, "P3");
+  CU_ASSERT_STRING_EQUAL(line2, "5 3");
+  CU_ASSERT_STRING_EQUAL(line3, "255");
 
-    free((void *) c.pixels); // prob not needed for app though
-    free(ppm);
+  free((void*)c.pixels);  // prob not needed for app though
+  free(ppm);
 }
-*/
 
 /*
 Scenario​: Constructing the PPM pixel data
@@ -229,11 +228,11 @@ int main() {
   /* NOTE - ORDER IS IMPORTANT */
   if (  // NULL == CU_add_test(pSuite, "test of testCreatingCanvas",
         // testCreatingCanvas)
-      NULL == CU_add_test(pSuite, "test of testWritingPixelsToCanvas",
-                          testWritingPixelsToCanvas)
-      /*| NULL == CU_add_test(pSuite, "test of testConstructingPPMHeader",
-      testConstructingPPMHeader)
-      || NULL == CU_add_test(pSuite, "test of testConstructingPPMPixelData",
+      //|| NULL == CU_add_test(pSuite, "test of testWritingPixelsToCanvas",
+      // testWritingPixelsToCanvas)
+      NULL == CU_add_test(pSuite, "test of testConstructingPPMHeader",
+                          testConstructingPPMHeader)
+      /* || NULL == CU_add_test(pSuite, "test of testConstructingPPMPixelData",
       testConstructingPPMPixelData)
       || NULL == CU_add_test(pSuite, "test of testSplittingLongLinesInPPM",
       testSplittingLongLinesInPPM)
