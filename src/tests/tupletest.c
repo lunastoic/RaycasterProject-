@@ -3,7 +3,6 @@
 
 #include "../tuple/tuple.h"
 #include "CUnit/Basic.h"
-
 #define EPSILON 0.00001
 
 /* Pointer to the file used by the tests. */
@@ -74,7 +73,6 @@ void testTupleVector(void) {
 
 void testPointCreate(void) {
   Tuple a = point(4, -4, 3);
-
   CU_ASSERT(a.x == 4);
   CU_ASSERT(a.y == -4);
   CU_ASSERT(a.z == 3);
@@ -369,11 +367,6 @@ void testNormalizeVector2(void) {
 
 #if 0  // NOT NEEDED FOR CSC 251 raycaster project
 
-//Scenario​: The cross product of two vectors
-​// 	  ​Given​ a ← vector(1, 2, 3)
-​// 	    ​And​ b ← vector(2, 3, 4)
-​// 	  ​Then​ cross(a, b) = vector(-1, 2, -1)
-​// 	    ​And​ cross(b, a) = vector(1, -2, 1)
 
 void testCrossProduct(void) {
     Tuple a = vector(1, 2, 3);
@@ -404,7 +397,6 @@ void testCrossProduct(void) {
     void
     testColors(void) {
   Color c = color(-0.5, 0.4, 1.7);
-
   CU_ASSERT_DOUBLE_EQUAL(c.red, -0.5, EPSILON);
   CU_ASSERT_DOUBLE_EQUAL(c.green, 0.4, EPSILON);
   CU_ASSERT_DOUBLE_EQUAL(c.blue, 1.7, EPSILON);
@@ -420,9 +412,7 @@ void testCrossProduct(void) {
   Color c1 = color(0.9, 0.6, 0.75);
   Color c2 = color(0.7, 0.1, 0.25);
   Color expected = color(1.6, 0.7, 1.0);
-
   Color result = addColors(c1, c2);
-
   CU_ASSERT_DOUBLE_EQUAL(result.red, expected.red, EPSILON);
   CU_ASSERT_DOUBLE_EQUAL(result.green, expected.green, EPSILON);
   CU_ASSERT_DOUBLE_EQUAL(result.blue, expected.blue, EPSILON);
@@ -438,9 +428,7 @@ void testCrossProduct(void) {
   Color c1 = color(0.9, 0.6, 0.75);
   Color c2 = color(0.7, 0.1, 0.25);
   Color expected = color(0.2, 0.5, 0.5);
-
   Color result = subColors(c1, c2);
-
   CU_ASSERT_DOUBLE_EQUAL(result.red, expected.red, EPSILON);
   CU_ASSERT_DOUBLE_EQUAL(result.green, expected.green, EPSILON);
   CU_ASSERT_DOUBLE_EQUAL(result.blue, expected.blue, EPSILON);
@@ -454,9 +442,7 @@ void testCrossProduct(void) {
     testMultColors1(void) {
   Color c = color(0.2, 0.3, 0.4);
   Color expected = color(0.4, 0.6, 0.8);
-
   Color result = scalarMultColor(2, c);
-
   CU_ASSERT_DOUBLE_EQUAL(result.red, expected.red, EPSILON);
   CU_ASSERT_DOUBLE_EQUAL(result.green, expected.green, EPSILON);
   CU_ASSERT_DOUBLE_EQUAL(result.blue, expected.blue, EPSILON);
@@ -472,14 +458,11 @@ void testCrossProduct(void) {
   Color c1 = color(1, 0.2, 0.4);
   Color c2 = color(0.9, 1, 0.1);
   Color expected = color(0.9, 0.2, 0.04);
-
   Color result = multColors(c1, c2);
-
   CU_ASSERT_DOUBLE_EQUAL(result.red, expected.red, EPSILON);
   CU_ASSERT_DOUBLE_EQUAL(result.green, expected.green, EPSILON);
   CU_ASSERT_DOUBLE_EQUAL(result.blue, expected.blue, EPSILON);
 }
-* /
 
     // The main() function for setting up and running the tests.
     // Returns a CUE_SUCCESS on successful running, another
