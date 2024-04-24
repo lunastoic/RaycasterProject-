@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <string.h>
-#include "CUnit/Basic.h"
+
 #include "../tuple/tuple.h"
+#include "CUnit/Basic.h"
 
 #define EPSILON 0.00001
 
@@ -12,67 +13,61 @@ static FILE* temp_file = NULL;
  * Opens the temporary file used by the tests.
  * Returns zero on success, non-zero otherwise.
  */
-int init_suite1(void)
-{
-   return 0;
-}
+int init_suite1(void) { return 0; }
 
 /* The suite cleanup function.
  * Closes the temporary file used by the tests.
  * Returns zero on success, non-zero otherwise.
  */
-int clean_suite1(void)
-{
-    return 0;
-}
+int clean_suite1(void) { return 0; }
 
-/*  Scenario​: A tuple with w=1.0 is a point
-*​ 	 ​Given​ a ← tuple(4.3, -4.2, 3.1, 1.0)
-​* 	  ​Then​ a.x = 4.3
-​* 	    ​And​ a.y = -4.2
-​* 	    ​And​ a.z = 3.1
-​* 	    ​And​ a.w = 1.0
-​* 	    ​And​ a is a point
-​* 	    ​And​ a is not a vector
-*/
-void testTuplePoint(void)
-{
-    Tuple a;
-    a.x = 4.3;
-    a.y = -4.2;
-    a.z = 3.1;
-    a.w = 1.0;
-
-    CU_ASSERT( a.x == 4.3 );
-    CU_ASSERT( a.y == -4.2 );
-    CU_ASSERT( a.z == 3.1 );
-    CU_ASSERT( a.w == 1.0 );
-
-    CU_ASSERT_TRUE( is_point(a) );
-    CU_ASSERT_FALSE( is_vector(a) );
-}
-/*
-//  Scenario​: A tuple with w=0 is a vector
-//	 ​Given​ a ← tuple(4.3, -4.2, 3.1, 0)
-​// 	  ​Then​ a.x = 4.3
+/* Scenario​: A tuple with w=1.0 is a point
+//  	 ​Given​ a ← tuple(4.3, -4.2, 3.1, 1.0)
+​//	  ​Then​ a.x = 4.3
 ​//	    ​And​ a.y = -4.2
 ​//	    ​And​ a.z = 3.1
 ​//	    ​And​ a.w = 1.0
-​//	    ​And​ a is not a point
-​//	    ​And​ a is a vector
+​//	    ​And​ a is a point
+​​And​ a is not a vector */
 
 /*
-void testTupleVector(void)
-{
-   Tuple a = tuple(4.3, -4.2, 3.1, 0);
-    CU_ASSERT( a.x == 4.3 );
-    CU_ASSERT( a.y == -4.2 );
-    CU_ASSERT( a.z == 3.1 );
-    CU_ASSERT( a.w == 0 );
-    CU_ASSERT_FALSE( is_point(a) );
-    CU_ASSERT_TRUE( is_vector(a) );
+   void testTuplePoint(void) {
+     Tuple a;
+     a.x = 4.3;
+     a.y = -4.2;
+     a.z = 3.1;
+     a.w = 1.0;
+
+     CU_ASSERT(a.x == 4.3);
+     CU_ASSERT(a.y == -4.2);
+     CU_ASSERT(a.z == 3.1);
+     CU_ASSERT(a.w == 1.0);
+
+     CU_ASSERT_TRUE(is_point(a));
+     CU_ASSERT_FALSE(is_vector(a));
+   }
+   */
+
+/*  Scenario​: A tuple with w=0 is a vector
+//	 ​Given​ a ← tuple(4.3, -4.2, 3.1, 0)
+​  // 	  ​Then​ a.x = 4.3
+​  //	    ​And​ a.y = -4.2
+​  //	    ​And​ a.z = 3.1
+​  //	    ​And​ a.w = 1.0
+​  //	    ​And​ a is not a point
+​  //	    ​And​ a is a vector */
+
+void testTupleVector(void) {
+  Tuple a = tuple(4.3, -4.2, 3.1, 0);
+  CU_ASSERT(a.x == 4.3);
+  CU_ASSERT(a.y == -4.2);
+  CU_ASSERT(a.z == 3.1);
+  CU_ASSERT(a.w == 0);
+  CU_ASSERT_FALSE(is_point(a));
+  CU_ASSERT_TRUE(is_vector(a));
 }
 
+/*
 //	​Scenario​: point() creates tuples with w=1
 ​// 	  ​Given​ p ← point(4, -4, 3)
 ​// 	  ​Then​ p = tuple(4, -4, 3, 1)
@@ -338,8 +333,9 @@ void testNormalizeVector1(void) {
 
 //​ 	​Scenario​: Normalizing vector(1, 2, 3)
 ​// 	  ​Given​ v ← vector(1, 2, 3)
-​// 	                                  ​# vector(1/√14,   2/√14,   3/√14)​
-​ //	  ​Then​ normalize(v) = approximately vector(0.26726, 0.53452, 0.80178)
+​// 	                                  ​# vector(1/√14,   2/√14,
+3/√14)​ ​ //	  ​Then​ normalize(v) = approximately
+vector(0.26726, 0.53452, 0.80178)
 
 
 void testNormalizeVector2(void) {
@@ -493,63 +489,83 @@ void testMultColors2(void) {
 // The main() function for setting up and running the tests.
 // Returns a CUE_SUCCESS on successful running, another
 // CUnit error code on failure.
-// 
+//
 
-int main()
-{
-    CU_pSuite pSuite = NULL;
+int main() {
+  CU_pSuite pSuite = NULL;
 
-    /* initialize the CUnit test registry */
-    if (CUE_SUCCESS != CU_initialize_registry())
-        return CU_get_error();
+  /* initialize the CUnit test registry */
+  if (CUE_SUCCESS != CU_initialize_registry()) return CU_get_error();
 
-    /* add a suite to the registry */
-    pSuite = CU_add_suite("Suite_1", init_suite1, clean_suite1);
-    if (NULL == pSuite) {
-        CU_cleanup_registry();
-        return CU_get_error();
-    }
-
-    /* add the tests to the suite */
-    /* NOTE - ORDER IS IMPORTANT */
-    if (  NULL == CU_add_test(pSuite, "test of testTuplePoint", testTuplePoint)
-          /*  || NULL == CU_add_test(pSuite, "test of testTupleVector", testTupleVector)
-            || NULL == CU_add_test(pSuite, "test of testPointCreate", testPointCreate)
-            || NULL == CU_add_test(pSuite, "test of testVectorCreate", testVectorCreate)
-            || NULL == CU_add_test(pSuite, "test of testAddTuples", testAddTuples)
-            || NULL == CU_add_test(pSuite, "test of testSubtractPoints", testSubtractPoints)
-            || NULL == CU_add_test(pSuite, "test of testSubtractVectorFromPoint", testSubtractVectorFromPoint)
-            || NULL == CU_add_test(pSuite, "test of testSubtractTwoVectors", testSubtractTwoVectors)
-            || NULL == CU_add_test(pSuite, "test of testSubtractVectorFromZeroVector", testSubtractVectorFromZeroVector)
-            || NULL == CU_add_test(pSuite, "test of testNegateTuple", testNegateTuple)
-            || NULL == CU_add_test(pSuite, "test of testMultiplyTupleByScalar", testMultiplyTupleByScalar)
-            || NULL == CU_add_test(pSuite, "test of testMultiplyTupleByFraction", testMultiplyTupleByFraction)
-            || NULL == CU_add_test(pSuite, "test of testDivideTupleByScalar", testDivideTupleByScalar)
-            || NULL == CU_add_test(pSuite, "test of testMagnitudeOfVector1", testMagnitudeOfVector1)
-            || NULL == CU_add_test(pSuite, "test of testMagnitudeOfVector2", testMagnitudeOfVector2)
-            || NULL == CU_add_test(pSuite, "test of testMagnitudeOfVector3", testMagnitudeOfVector3)
-            || NULL == CU_add_test(pSuite, "test of testMagnitudeOfVector4", testMagnitudeOfVector4)
-            || NULL == CU_add_test(pSuite, "test of testMagnitudeOfVector5", testMagnitudeOfVector5)
-            || NULL == CU_add_test(pSuite, "test of testNormalizeVector1", testNormalizeVector1)
-            || NULL == CU_add_test(pSuite, "test of testNormalizeVector2", testNormalizeVector2)
-            || NULL == CU_add_test(pSuite, "test of testMagnitudeOfNormalizedVector", testMagnitudeOfNormalizedVector)
-            || NULL == CU_add_test(pSuite, "test of testDotProduct", testDotProduct)
-//            || NULL == CU_add_test(pSuite, "test of testCrossProduct", testCrossProduct)
-
-            || NULL == CU_add_test(pSuite, "test of testColors", testColors)
-            || NULL == CU_add_test(pSuite, "test of testAddingColors", testAddingColors)
-            || NULL == CU_add_test(pSuite, "test of testSubtractingColors", testSubtractingColors)
-            || NULL == CU_add_test(pSuite, "test of testMultColors1", testMultColors1)
-            || NULL == CU_add_test(pSuite, "test of testMultColors2", testMultColors2) */
-       )
-    {
-        CU_cleanup_registry();
-        return CU_get_error();
-    }
-
-    /* Run all tests using the CUnit Basic interface */
-    CU_basic_set_mode(CU_BRM_VERBOSE);
-    CU_basic_run_tests();
+  /* add a suite to the registry */
+  pSuite = CU_add_suite("Suite_1", init_suite1, clean_suite1);
+  if (NULL == pSuite) {
     CU_cleanup_registry();
     return CU_get_error();
+  }
+
+  /* add the tests to the suite */
+  /* NOTE - ORDER IS IMPORTANT */
+  if (  // NULL == CU_add_test(pSuite, "test of testTuplePoint", testTuplePoint)
+      NULL == CU_add_test(pSuite, "test of testTupleVector", testTupleVector)
+      /*  || NULL == CU_add_test(pSuite, "test of testPointCreate",
+testPointCreate)
+        || NULL == CU_add_test(pSuite, "test of testVectorCreate",
+testVectorCreate)
+        || NULL == CU_add_test(pSuite, "test of testAddTuples", testAddTuples)
+        || NULL == CU_add_test(pSuite, "test of testSubtractPoints",
+testSubtractPoints)
+        || NULL == CU_add_test(pSuite, "test of testSubtractVectorFromPoint",
+testSubtractVectorFromPoint)
+        || NULL == CU_add_test(pSuite, "test of testSubtractTwoVectors",
+testSubtractTwoVectors)
+        || NULL == CU_add_test(pSuite, "test of
+testSubtractVectorFromZeroVector", testSubtractVectorFromZeroVector)
+        || NULL == CU_add_test(pSuite, "test of testNegateTuple",
+testNegateTuple)
+        || NULL == CU_add_test(pSuite, "test of testMultiplyTupleByScalar",
+testMultiplyTupleByScalar)
+        || NULL == CU_add_test(pSuite, "test of testMultiplyTupleByFraction",
+testMultiplyTupleByFraction)
+        || NULL == CU_add_test(pSuite, "test of testDivideTupleByScalar",
+testDivideTupleByScalar)
+        || NULL == CU_add_test(pSuite, "test of testMagnitudeOfVector1",
+testMagnitudeOfVector1)
+        || NULL == CU_add_test(pSuite, "test of testMagnitudeOfVector2",
+testMagnitudeOfVector2)
+        || NULL == CU_add_test(pSuite, "test of testMagnitudeOfVector3",
+testMagnitudeOfVector3)
+        || NULL == CU_add_test(pSuite, "test of testMagnitudeOfVector4",
+testMagnitudeOfVector4)
+        || NULL == CU_add_test(pSuite, "test of testMagnitudeOfVector5",
+testMagnitudeOfVector5)
+        || NULL == CU_add_test(pSuite, "test of testNormalizeVector1",
+testNormalizeVector1)
+        || NULL == CU_add_test(pSuite, "test of testNormalizeVector2",
+testNormalizeVector2)
+        || NULL == CU_add_test(pSuite, "test of
+testMagnitudeOfNormalizedVector", testMagnitudeOfNormalizedVector)
+        || NULL == CU_add_test(pSuite, "test of testDotProduct", testDotProduct)
+//            || NULL == CU_add_test(pSuite, "test of testCrossProduct",
+testCrossProduct)
+
+        || NULL == CU_add_test(pSuite, "test of testColors", testColors)
+        || NULL == CU_add_test(pSuite, "test of testAddingColors",
+testAddingColors)
+        || NULL == CU_add_test(pSuite, "test of testSubtractingColors",
+testSubtractingColors)
+        || NULL == CU_add_test(pSuite, "test of testMultColors1",
+testMultColors1)
+        || NULL == CU_add_test(pSuite, "test of testMultColors2",
+testMultColors2) */
+  ) {
+    CU_cleanup_registry();
+    return CU_get_error();
+  }
+
+  /* Run all tests using the CUnit Basic interface */
+  CU_basic_set_mode(CU_BRM_VERBOSE);
+  CU_basic_run_tests();
+  CU_cleanup_registry();
+  return CU_get_error();
 }
