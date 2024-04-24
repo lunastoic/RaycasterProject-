@@ -55,7 +55,7 @@ int clean_suite1(void) { return 0; }
 ​  //	    ​And​ a.z = 3.1
 ​  //	    ​And​ a.w = 1.0
 ​  //	    ​And​ a is not a point
-​  //	    ​And​ a is a vector */
+​  //	    ​And​ a is a vector
 
 void testTupleVector(void) {
   Tuple a = tuple(4.3, -4.2, 3.1, 0);
@@ -67,23 +67,24 @@ void testTupleVector(void) {
   CU_ASSERT_TRUE(is_vector(a));
 }
 
-/*
 //	​Scenario​: point() creates tuples with w=1
-​// 	  ​Given​ p ← point(4, -4, 3)
-​// 	  ​Then​ p = tuple(4, -4, 3, 1)
+​//	  ​Given​ p ← point(4, -4, 3)
+//​	  ​Then​ p = tuple(4, -4, 3, 1)
 
+*/
 void testPointCreate(void) {
-    Tuple a = point(4, -4, 3);
+  Tuple a = point(4, -4, 3);
 
-    CU_ASSERT( a.x == 4 );
-    CU_ASSERT( a.y == -4 );
-    CU_ASSERT( a.z == 3 );
-    CU_ASSERT( a.w == 1 );
-    not strictly needed after testing in prior unit tests...
-    CU_ASSERT_TRUE( is_point(a) );
-    CU_ASSERT_FALSE( is_vector(a) );
+  CU_ASSERT(a.x == 4);
+  CU_ASSERT(a.y == -4);
+  CU_ASSERT(a.z == 3);
+  CU_ASSERT(a.w == 1);
+  // not strictly needed after testing in prior unit tests...
+  CU_ASSERT_TRUE(is_point(a));
+  CU_ASSERT_FALSE(is_vector(a));
 }
 
+/*
 
 //	​Scenario​: vector() creates tuples with w=0
 ​// 	  ​Given​ v ← vector(4, -4, 3)
@@ -507,56 +508,56 @@ int main() {
   /* add the tests to the suite */
   /* NOTE - ORDER IS IMPORTANT */
   if (  // NULL == CU_add_test(pSuite, "test of testTuplePoint", testTuplePoint)
-      NULL == CU_add_test(pSuite, "test of testTupleVector", testTupleVector)
-      /*  || NULL == CU_add_test(pSuite, "test of testPointCreate",
-testPointCreate)
-        || NULL == CU_add_test(pSuite, "test of testVectorCreate",
+        //|| NULL == CU_add_test(pSuite, "test of testTupleVector",
+        // testTupleVector)
+      NULL == CU_add_test(pSuite, "test of testPointCreate", testPointCreate)
+      /* || NULL == CU_add_test(pSuite, "test of testVectorCreate",
 testVectorCreate)
-        || NULL == CU_add_test(pSuite, "test of testAddTuples", testAddTuples)
-        || NULL == CU_add_test(pSuite, "test of testSubtractPoints",
+       || NULL == CU_add_test(pSuite, "test of testAddTuples", testAddTuples)
+       || NULL == CU_add_test(pSuite, "test of testSubtractPoints",
 testSubtractPoints)
-        || NULL == CU_add_test(pSuite, "test of testSubtractVectorFromPoint",
+       || NULL == CU_add_test(pSuite, "test of testSubtractVectorFromPoint",
 testSubtractVectorFromPoint)
-        || NULL == CU_add_test(pSuite, "test of testSubtractTwoVectors",
+       || NULL == CU_add_test(pSuite, "test of testSubtractTwoVectors",
 testSubtractTwoVectors)
-        || NULL == CU_add_test(pSuite, "test of
+       || NULL == CU_add_test(pSuite, "test of
 testSubtractVectorFromZeroVector", testSubtractVectorFromZeroVector)
-        || NULL == CU_add_test(pSuite, "test of testNegateTuple",
+       || NULL == CU_add_test(pSuite, "test of testNegateTuple",
 testNegateTuple)
-        || NULL == CU_add_test(pSuite, "test of testMultiplyTupleByScalar",
+       || NULL == CU_add_test(pSuite, "test of testMultiplyTupleByScalar",
 testMultiplyTupleByScalar)
-        || NULL == CU_add_test(pSuite, "test of testMultiplyTupleByFraction",
+       || NULL == CU_add_test(pSuite, "test of testMultiplyTupleByFraction",
 testMultiplyTupleByFraction)
-        || NULL == CU_add_test(pSuite, "test of testDivideTupleByScalar",
+       || NULL == CU_add_test(pSuite, "test of testDivideTupleByScalar",
 testDivideTupleByScalar)
-        || NULL == CU_add_test(pSuite, "test of testMagnitudeOfVector1",
+       || NULL == CU_add_test(pSuite, "test of testMagnitudeOfVector1",
 testMagnitudeOfVector1)
-        || NULL == CU_add_test(pSuite, "test of testMagnitudeOfVector2",
+       || NULL == CU_add_test(pSuite, "test of testMagnitudeOfVector2",
 testMagnitudeOfVector2)
-        || NULL == CU_add_test(pSuite, "test of testMagnitudeOfVector3",
+       || NULL == CU_add_test(pSuite, "test of testMagnitudeOfVector3",
 testMagnitudeOfVector3)
-        || NULL == CU_add_test(pSuite, "test of testMagnitudeOfVector4",
+       || NULL == CU_add_test(pSuite, "test of testMagnitudeOfVector4",
 testMagnitudeOfVector4)
-        || NULL == CU_add_test(pSuite, "test of testMagnitudeOfVector5",
+       || NULL == CU_add_test(pSuite, "test of testMagnitudeOfVector5",
 testMagnitudeOfVector5)
-        || NULL == CU_add_test(pSuite, "test of testNormalizeVector1",
+       || NULL == CU_add_test(pSuite, "test of testNormalizeVector1",
 testNormalizeVector1)
-        || NULL == CU_add_test(pSuite, "test of testNormalizeVector2",
+       || NULL == CU_add_test(pSuite, "test of testNormalizeVector2",
 testNormalizeVector2)
-        || NULL == CU_add_test(pSuite, "test of
+       || NULL == CU_add_test(pSuite, "test of
 testMagnitudeOfNormalizedVector", testMagnitudeOfNormalizedVector)
-        || NULL == CU_add_test(pSuite, "test of testDotProduct", testDotProduct)
+       || NULL == CU_add_test(pSuite, "test of testDotProduct", testDotProduct)
 //            || NULL == CU_add_test(pSuite, "test of testCrossProduct",
 testCrossProduct)
 
-        || NULL == CU_add_test(pSuite, "test of testColors", testColors)
-        || NULL == CU_add_test(pSuite, "test of testAddingColors",
+       || NULL == CU_add_test(pSuite, "test of testColors", testColors)
+       || NULL == CU_add_test(pSuite, "test of testAddingColors",
 testAddingColors)
-        || NULL == CU_add_test(pSuite, "test of testSubtractingColors",
+       || NULL == CU_add_test(pSuite, "test of testSubtractingColors",
 testSubtractingColors)
-        || NULL == CU_add_test(pSuite, "test of testMultColors1",
+       || NULL == CU_add_test(pSuite, "test of testMultColors1",
 testMultColors1)
-        || NULL == CU_add_test(pSuite, "test of testMultColors2",
+       || NULL == CU_add_test(pSuite, "test of testMultColors2",
 testMultColors2) */
   ) {
     CU_cleanup_registry();
