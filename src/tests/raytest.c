@@ -54,6 +54,7 @@ Scenario​: Computing a point from a distance
 ​ 	    ​And​ position(r, 2.5) = point(4.5, 3, 4)
 */
 
+/*
 void testComputePointFromDistance(void) {
   Ray r = ray(point(2, 3, 4), vector(1, 0, 0));
 
@@ -92,19 +93,17 @@ void testComputePointFromDistance(void) {
 ​ 	    ​And​ xs[1] = 6.0
 */
 
-/*
-void testRayIntersectSphereTwoPoints(void)
-{
-    Ray r = ray( point(0, 0, -5), vector(0, 0, 1) );
-    Sphere s = sphere( point(0, 0, 0), 1 );
-    Isect xs = intersect(s, r);
+void testRayIntersectSphereTwoPoints(void) {
+  Ray r = ray(point(0, 0, -5), vector(0, 0, 1));
+  Sphere s = sphere(point(0, 0, 0), 1);
+  Isect xs = intersect(s, r);
 
-    CU_ASSERT( xs.count == 2 );
-    CU_ASSERT_DOUBLE_EQUAL( xs.t_vals[0], 4.0, EPSILON );
-    CU_ASSERT_DOUBLE_EQUAL( xs.t_vals[1], 6.0, EPSILON );
+  CU_ASSERT(xs.count == 2);
+  CU_ASSERT_DOUBLE_EQUAL(xs.t_vals[0], 4.0, EPSILON);
+  CU_ASSERT_DOUBLE_EQUAL(xs.t_vals[1], 6.0, EPSILON);
 }
 
-
+/*
         ​Scenario​: A ray intersects a sphere at a tangent
 ​ 	  ​Given​ r ← ray(point(0, 1, -5), vector(0, 0, 1))
 ​ 	    ​And​ s ← sphere()
@@ -213,21 +212,20 @@ int main() {
 
   /* add the tests to the suite */
   /* NOTE - ORDER IS IMPORTANT */
-  if (  // NULL == CU_add_test(pSuite, "test of Ray Creation",
-        // testRayCreation)||
-      NULL == CU_add_test(pSuite, "testComputePointFromDistance",
-                          testComputePointFromDistance)
-      /* || NULL == CU_add_test(pSuite, "testRayIntersectSphereTwoPoints",
-       testRayIntersectSphereTwoPoints)
-       || NULL == CU_add_test(pSuite,
-       "testRayIntersectSphereTangent",testRayIntersectSphereTangent)
-       || NULL == CU_add_test(pSuite, "testRayMissesSphere",
-       testRayMissesSphere)
-       || NULL == CU_add_test(pSuite, "testRayOriginatesInsideSphere",
-       testRayOriginatesInsideSphere)
-       || NULL == CU_add_test(pSuite, "testSphereBehindRay",
-       testSphereBehindRay)
-       */
+  if (  // NULL == CU_add_test(pSuite, "test of Ray Creation", testRayCreation)
+        // || NULL == CU_add_test(pSuite,
+        // "testComputePointFromDistance",testComputePointFromDistance)||
+      NULL == CU_add_test(pSuite, "testRayIntersectSphereTwoPoints",
+                          testRayIntersectSphereTwoPoints)
+      /*  || NULL == CU_add_test(pSuite,
+           "testRayIntersectSphereTangent",testRayIntersectSphereTangent)
+           || NULL == CU_add_test(pSuite, "testRayMissesSphere",
+           testRayMissesSphere)
+           || NULL == CU_add_test(pSuite, "testRayOriginatesInsideSphere",
+           testRayOriginatesInsideSphere)
+           || NULL == CU_add_test(pSuite, "testSphereBehindRay",
+           testSphereBehindRay)
+           */
   ) {
     CU_cleanup_registry();
     return CU_get_error();
