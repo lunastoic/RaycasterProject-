@@ -136,6 +136,7 @@ void testRayIntersectSphereTangent(void) {
 ​ 	  ​Then​ xs.count = 0
 */
 
+/*
 void testRayMissesSphere(void) {
   Ray r = ray(point(0, 2, -5), vector(0, 0, 1));
   Sphere s = sphere(point(0, 0, 0), 1);
@@ -144,6 +145,7 @@ void testRayMissesSphere(void) {
 
   CU_ASSERT(xs.count == 0);
 }
+*/
 
 /*
 
@@ -156,20 +158,18 @@ void testRayMissesSphere(void) {
 ​ 	    ​And​ xs[1] = 1.0
 */
 
-/*
-void testRayOriginatesInsideSphere(void)
-{
-    Ray r = ray( point(0, 0, 0), vector(0, 0, 1) );
-    Sphere s = sphere( point(0, 0, 0), 1 );
+void testRayOriginatesInsideSphere(void) {
+  Ray r = ray(point(0, 0, 0), vector(0, 0, 1));
+  Sphere s = sphere(point(0, 0, 0), 1);
 
-    Isect xs = intersect(s, r);
+  Isect xs = intersect(s, r);
 
-    CU_ASSERT( xs.count == 2 );
-    CU_ASSERT_DOUBLE_EQUAL( xs.t_vals[0], -1, EPSILON );
-    CU_ASSERT_DOUBLE_EQUAL( xs.t_vals[1], 1, EPSILON );
+  CU_ASSERT(xs.count == 2);
+  CU_ASSERT_DOUBLE_EQUAL(xs.t_vals[0], -1, EPSILON);
+  CU_ASSERT_DOUBLE_EQUAL(xs.t_vals[1], 1, EPSILON);
 }
 
-
+/*
 Scenario​: A sphere is behind a ray
 ​ 	  ​Given​ r ← ray(point(0, 0, 5), vector(0, 0, 1))
 ​ 	    ​And​ s ← sphere()
@@ -219,13 +219,14 @@ int main() {
         //  ||NULL == CU_add_test(pSuite,
         //  "testRayIntersectSphereTwoPoints",testRayIntersectSphereTwoPoints)
         // ||NULL == CU_add_test(pSuite,
-        // "testRayIntersectSphereTangent",testRayIntersectSphereTangent)||
-      NULL == CU_add_test(pSuite, "testRayMissesSphere", testRayMissesSphere)
-      /*  || NULL == CU_add_test(pSuite, "testRayOriginatesInsideSphere",
-        testRayOriginatesInsideSphere)
-        || NULL == CU_add_test(pSuite, "testSphereBehindRay",
-        testSphereBehindRay)
-        */
+        // "testRayIntersectSphereTangent",testRayIntersectSphereTangent)
+        // || NULL == CU_add_test(pSuite, "testRayMissesSphere",
+        // testRayMissesSphere)||
+      NULL == CU_add_test(pSuite, "testRayOriginatesInsideSphere",
+                          testRayOriginatesInsideSphere)
+      /* || NULL == CU_add_test(pSuite, "testSphereBehindRay",
+       testSphereBehindRay)
+       */
   ) {
     CU_cleanup_registry();
     return CU_get_error();
