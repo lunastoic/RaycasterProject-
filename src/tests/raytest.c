@@ -158,6 +158,7 @@ void testRayMissesSphere(void) {
 ​ 	    ​And​ xs[1] = 1.0
 */
 
+/*
 void testRayOriginatesInsideSphere(void) {
   Ray r = ray(point(0, 0, 0), vector(0, 0, 1));
   Sphere s = sphere(point(0, 0, 0), 1);
@@ -168,6 +169,7 @@ void testRayOriginatesInsideSphere(void) {
   CU_ASSERT_DOUBLE_EQUAL(xs.t_vals[0], -1, EPSILON);
   CU_ASSERT_DOUBLE_EQUAL(xs.t_vals[1], 1, EPSILON);
 }
+*/
 
 /*
 Scenario​: A sphere is behind a ray
@@ -179,20 +181,18 @@ Scenario​: A sphere is behind a ray
 ​ 	    ​And​ xs[1] = -4.0
 */
 
-/*
-void testSphereBehindRay(void)
-{
-    Ray r = ray( point(0, 0, 5), vector(0, 0, 1) );
-    Sphere s = sphere( point(0, 0, 0), 1 );
+void testSphereBehindRay(void) {
+  Ray r = ray(point(0, 0, 5), vector(0, 0, 1));
+  Sphere s = sphere(point(0, 0, 0), 1);
 
-    Isect xs = intersect(s, r);
+  Isect xs = intersect(s, r);
 
-    CU_ASSERT( xs.count == 2 );
-    CU_ASSERT_DOUBLE_EQUAL( xs.t_vals[0], -6, EPSILON );
-    CU_ASSERT_DOUBLE_EQUAL( xs.t_vals[1], -4, EPSILON );
+  CU_ASSERT(xs.count == 2);
+  CU_ASSERT_DOUBLE_EQUAL(xs.t_vals[0], -6, EPSILON);
+  CU_ASSERT_DOUBLE_EQUAL(xs.t_vals[1], -4, EPSILON);
 }
-*/
 
+/*
 /* The main() function for setting up and running the tests.
  * Returns a CUE_SUCCESS on successful running, another
  * CUnit error code on failure.
@@ -221,12 +221,12 @@ int main() {
         // ||NULL == CU_add_test(pSuite,
         // "testRayIntersectSphereTangent",testRayIntersectSphereTangent)
         // || NULL == CU_add_test(pSuite, "testRayMissesSphere",
-        // testRayMissesSphere)||
-      NULL == CU_add_test(pSuite, "testRayOriginatesInsideSphere",
-                          testRayOriginatesInsideSphere)
-      /* || NULL == CU_add_test(pSuite, "testSphereBehindRay",
-       testSphereBehindRay)
-       */
+        // testRayMissesSphere)
+        // || NULL == CU_add_test(pSuite,
+        // "testRayOriginatesInsideSphere",testRayOriginatesInsideSphere)||
+
+      NULL == CU_add_test(pSuite, "testSphereBehindRay", testSphereBehindRay)
+
   ) {
     CU_cleanup_registry();
     return CU_get_error();
