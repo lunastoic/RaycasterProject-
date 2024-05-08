@@ -109,7 +109,6 @@ Scenario​: Constructing the PPM pixel data
 
 */
 
-/*
 void testConstructingPPMPixelData(void) {
     Canvas c = canvas(5, 3);
 

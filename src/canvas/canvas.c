@@ -13,7 +13,7 @@ Canvas canvas(unsigned int w, unsigned int h) {
   Canvas c;
   c.width = w;     // Set the canvas width
   c.height = h;    // Set the canvas height
-  c.channels = 3;  // Set number of color channels to 3 (RGB)
+  c.channels = 3;  // Set number of color channels to 3 (Red,green,blue)
   c.pixels = calloc(
       3 * w * h,
       sizeof(unsigned int));  // Allocate and initialize pixel data to zero

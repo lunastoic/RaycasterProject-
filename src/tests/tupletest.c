@@ -315,9 +315,7 @@ void testSubtractTwoVectors(void) {
     testNormalizeVector1(void) {
   Tuple v = vector(4, 0, 0);
   Tuple expected = vector(1, 0, 0);
-
   v = normalizeVector(v);
-
   CU_ASSERT_DOUBLE_EQUAL(v.x, expected.x, EPSILON);
   CU_ASSERT_DOUBLE_EQUAL(v.y, expected.y, EPSILON);
   CU_ASSERT_DOUBLE_EQUAL(v.z, expected.z, EPSILON);
@@ -333,9 +331,7 @@ vector(0.26726, 0.53452, 0.80178)
 void testNormalizeVector2(void) {
   Tuple v = vector(1, 2, 3);
   Tuple expected = vector(0.26726, 0.53452, 0.80178);
-
   v = normalizeVector(v);
-
   CU_ASSERT_DOUBLE_EQUAL(v.x, expected.x, EPSILON);
   CU_ASSERT_DOUBLE_EQUAL(v.y, expected.y, EPSILON);
   CU_ASSERT_DOUBLE_EQUAL(v.z, expected.z, EPSILON);
@@ -366,7 +362,6 @@ void testNormalizeVector2(void) {
 }
 
 #if 0  // NOT NEEDED FOR CSC 251 raycaster project
-
 
 void testCrossProduct(void) {
     Tuple a = vector(1, 2, 3);
