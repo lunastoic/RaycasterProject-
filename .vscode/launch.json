@@ -19,8 +19,29 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "Build tupletest",  // This should match the label of your build task in tasks.json
-            "miDebuggerPath": "/path/to/your/gdb.exe"
+            "preLaunchTask": "Build tupletest",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "Debug canvastest",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/canvastest",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build canvastest",
+            "miDebuggerPath": "/usr/bin/gdb"
         }
     ]
 }

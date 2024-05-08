@@ -6,14 +6,22 @@
 #include <stdlib.h>  // Include for general utilities
 #include <string.h>  // Include for string manipulation functions
 
-static char *unsigned_int_to_char_array(unsigned int);
+// Utility function for conversion of unsigned int to char array
+static char *unsigned_int_to_char_array(unsigned int num);
+
+// Function to ensure values stay within the byte range (0-255)
+unsigned int clamp_to_byte_range(int value) {
+  if (value < 0) return 0;      // Clamp to minimum 0
+  if (value > 255) return 255;  // Clamp to maximum 255
+  return value;                 // If in range, return original value
+}
 
 // Creates a canvas of a given width and height, initializes pixel data
 Canvas canvas(unsigned int w, unsigned int h) {
   Canvas c;
   c.width = w;     // Set the canvas width
   c.height = h;    // Set the canvas height
-  c.channels = 3;  // Set number of color channels to 3 (Red,green,blue)
+  c.channels = 3;  // Set number of color channels to 3 (Red, Green, Blue)
   c.pixels = calloc(
       3 * w * h,
       sizeof(unsigned int));  // Allocate and initialize pixel data to zero
@@ -22,8 +30,11 @@ Canvas canvas(unsigned int w, unsigned int h) {
 
 // Writes a pixel with a specified color at a specific location in the canvas
 Canvas write_pixel(Canvas ca, unsigned int x, unsigned int y, Color co) {
-  if (x < ca.width && y < ca.height) {
-    unsigned int *pix_ptr = ca.pixels + ca.channels * (y * ca.width + x);
+  if (x < ca.width &&
+      y < ca.height) {  // Check if coords are within the canvas bounds
+    unsigned int *pix_ptr =
+        ca.pixels +
+        ca.channels * (y * ca.width + x);  // Calculate the pointer to the pixel
     *(pix_ptr) = (unsigned int)round(co.red * 255.0);  // Set red component
     *(pix_ptr + 1) =
         (unsigned int)round(co.green * 255.0);  // Set green component
@@ -36,59 +47,55 @@ Canvas write_pixel(Canvas ca, unsigned int x, unsigned int y, Color co) {
 // Retrieves the color of a pixel at a specified location in the canvas
 Color pixel_at(Canvas ca, unsigned int x, unsigned int y) {
   Color color = {0.0, 0.0, 0.0};  // Default color is black
-  if (x < ca.width && y < ca.height) {
-    unsigned int *pix_ptr = ca.pixels + ca.channels * (y * ca.width + x);
+  if (x < ca.width &&
+      y < ca.height) {  // Check if the coords are within the canvas bounds
+    unsigned int *pix_ptr =
+        ca.pixels +
+        ca.channels * (y * ca.width + x);  // Calculate pointer to the pixel
     color.red = (double)*(pix_ptr);        // Get the red component
     color.green = (double)*(pix_ptr + 1);  // Get the green component
     color.blue = (double)*(pix_ptr + 2);   // Get the blue component
   }
   return color;  // Return the color
 }
-// Converts the entire canvas into a PPM formatted string
 char *canvas_to_ppm(Canvas ca) {
   const unsigned int HEADER_MAX_LEN = 100;
   char header[HEADER_MAX_LEN];
-  sprintf(header, "P3\n%d %d\n255\n\0", ca.width, ca.height);
-  unsigned int hbytes = strlen(header);
+  snprintf(header, HEADER_MAX_LEN, "P3\n%d %d\n255\n", ca.width, ca.height);
 
-  // Allocate memory for the entire PPM data, including space for newlines after
-  // each row
-  char *ppm =
-      calloc(hbytes + (4 * 3 * ca.width * ca.height) + ca.height, sizeof(char));
-  if (ppm == NULL) {
-    return NULL;  // Return NULL if memory allocation fails
-  }
-  strcpy(ppm, header);  // Start the PPM data with the header
+  // Estimate buffer size conservatively, considering max values and
+  // space/newline characters
+  size_t buffer_size =
+      strlen(header) + ca.width * ca.height * 12 + ca.height * 2;
+  char *ppm = malloc(buffer_size);
+  if (!ppm) return NULL;
 
-  // Iterate over each pixel, convert to a string, and concatenate to the PPM
-  // data
+  char *curr = ppm;
+  curr += sprintf(curr, "%s", header);
+
   for (unsigned int y = 0; y < ca.height; y++) {
+    int line_len = 0;
     for (unsigned int x = 0; x < ca.width; x++) {
       unsigned int index = (y * ca.width + x) * ca.channels;
-      for (int channel = 0; channel < 3; ++channel) {
-        char *color = unsigned_int_to_char_array(ca.pixels[index + channel]);
-        strcat(ppm, color);
-        free(
-            color);  // Remember to free the malloc'd string to avoid memoryleak
+      char pixel[15];
+      snprintf(pixel, sizeof(pixel), "%u %u %u",
+               clamp_to_byte_range((int)(ca.pixels[index])),
+               clamp_to_byte_range((int)(ca.pixels[index + 1])),
+               clamp_to_byte_range((int)(ca.pixels[index + 2])));
+
+      int pixel_len = strlen(pixel);
+
+      // If adding the next pixel would exceed 70 characters, start a new line
+      if (line_len + pixel_len + (line_len > 0 ? 1 : 0) > 70) {
+        curr += sprintf(curr, "\n%s", pixel);
+        line_len = pixel_len;
+      } else {
+        curr += sprintf(curr, "%s%s", line_len > 0 ? " " : "", pixel);
+        line_len += pixel_len + (line_len > 0 ? 1 : 0);
       }
     }
-    strcat(ppm, "\n");  // Append a newline at the end of each row of pixels
+    curr += sprintf(curr, "\n");
   }
 
-  return ppm;  // Return the complete PPM data
-}
-
-/* utility for conversion of unsigned int to char array */
-static char *unsigned_int_to_char_array(unsigned int num) {
-  // function only needs to expect numbers from 0 - 255
-  assert(num <= 255 && num >= 0);
-  char *str = malloc(4 * sizeof(char));  // Allocate space for at most three
-  // digits and a null terminator
-  if (str == NULL) {
-    return NULL;  // Handle malloc failure
-  }
-  sprintf(
-      str, "%u ",
-      num);  // Format the number as a string, including a for PPM formatting
-  return str;
+  return ppm;
 }

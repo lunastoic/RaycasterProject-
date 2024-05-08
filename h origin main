@@ -1,0 +1,53 @@
+[33mcommit bab8e13c431e4acc97c985ba02df350cd5327490[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Lunastoic <cluna027@gmail.com>
+Date:   Tue Apr 23 20:37:46 2024 -0700
+
+    Add test case for subtracting two vectors
+
+[33mcommit b39825539c709bb1721af1d00ff273dea49a59dc[m
+Author: Lunastoic <cluna027@gmail.com>
+Date:   Tue Apr 23 20:34:35 2024 -0700
+
+    Add test case for subtracting vector from point
+
+[33mcommit 4f150e60f1539553f632f682e5b6393d9c9e517b[m
+Author: Lunastoic <cluna027@gmail.com>
+Date:   Tue Apr 23 20:31:47 2024 -0700
+
+    Add test case for subtracting points
+
+[33mcommit 53c69a0447339489284dbe96e0c63aeff8f21328[m
+Author: Lunastoic <cluna027@gmail.com>
+Date:   Tue Apr 23 20:29:14 2024 -0700
+
+    Add test case for tuple addition
+
+[33mcommit cffb063d34cb8faec04d56b83220f0772e5e7031[m
+Author: Lunastoic <cluna027@gmail.com>
+Date:   Tue Apr 23 20:26:47 2024 -0700
+
+    Add test case for tuple vector creation
+
+[33mcommit 6a8862dbaf75a26e1c5dfd20f4c676e56fc3fa48[m
+Author: Lunastoic <cluna027@gmail.com>
+Date:   Tue Apr 23 20:12:53 2024 -0700
+
+    Add test for creating a point
+
+[33mcommit 6b06a1ce30eb93dede67c7798d737a13f7abf349[m
+Author: Lunastoic <cluna027@gmail.com>
+Date:   Tue Apr 23 20:01:32 2024 -0700
+
+    Add test case for TupleVector functionality
+
+[33mcommit d06043e06d3c84a72331f552eb69247e4d75db30[m
+Author: Lunastoic <cluna027@gmail.com>
+Date:   Tue Apr 23 19:44:55 2024 -0700
+
+    Add initial test for tupletest
+
+[33mcommit 9d340ec856afa3f03d78d1782c00ca5f6f2a6008[m
+Author: Chris Luna <cluna027@gmail.com>
+Date:   Mon Apr 22 00:07:56 2024 -0700
+
+    Normalize all the line endings

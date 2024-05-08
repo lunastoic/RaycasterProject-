@@ -28,16 +28,14 @@ int clean_suite1(void) { return 0; }
 
 */
 
-/*
 void testCreatingCanvas(void) {
   Canvas c = canvas(10, 20);
 
   CU_ASSERT(c.width == 10);
   CU_ASSERT(c.height == 20);
 
-  free((void *)c.pixels);  // prob not needed for app though
+  free((void*)c.pixels);  // prob not needed for app though
 }
-*/
 
 /*
         ​Scenario​: Writing pixels to a canvas
@@ -47,7 +45,6 @@ void testCreatingCanvas(void) {
 ​ 	  ​Then​ pixel_at(c, 2, 3) = red
 */
 
-/*
 void testWritingPixelsToCanvas(void) {
   Canvas c = canvas(10, 20);
   Color red = color(1, 0, 0);
@@ -59,7 +56,7 @@ void testWritingPixelsToCanvas(void) {
   CU_ASSERT(out.green == 0);
   CU_ASSERT(out.blue == 0);
 
-  free((void *)c.pixels);  // prob not needed for app though
+  free((void*)c.pixels);  // prob not needed for app though
 }
 
 /*
@@ -110,35 +107,31 @@ Scenario​: Constructing the PPM pixel data
 */
 
 void testConstructingPPMPixelData(void) {
-    Canvas c = canvas(5, 3);
+  Canvas c = canvas(5, 3);
 
-    Color c1 = color(1.5, 0, 0);
-    Color c2 = color(0, 0.5, 0);
-    Color c3 = color(-0.5, 0, 1);
+  Color c1 = color(1.5, 0, 0);
+  Color c2 = color(0, 0.5, 0);
+  Color c3 = color(-0.5, 0, 1);
 
-    write_pixel(c, 0, 0, c1);
-    write_pixel(c, 2, 1, c2);
-    write_pixel(c, 4, 2, c3);
+  write_pixel(c, 0, 0, c1);
+  write_pixel(c, 2, 1, c2);
+  write_pixel(c, 4, 2, c3);
 
-    char* ppm = canvas_to_ppm(c);
-    char* lines[ 8 ]; lines[ 0 ] = strtok(ppm, "\n");
+  char* ppm = canvas_to_ppm(c);
+  char* lines[8];
+  lines[0] = strtok(ppm, "\n");
 
-    for ( int idx = 1; idx < 3 + 5; idx++ )
-    {
-        lines[ idx ] = strtok(NULL, "\n");
-    }
+  for (int idx = 1; idx < 3 + 5; idx++) {
+    lines[idx] = strtok(NULL, "\n");
+  }
 
-    CU_ASSERT_STRING_EQUAL(lines[ 3 ],
-       "255 0 0 0 0 0 0 0 0 0 0 0 0 0 0");
-    CU_ASSERT_STRING_EQUAL(lines[ 4 ],
-       "0 0 0 0 0 0 0 128 0 0 0 0 0 0 0");
-    CU_ASSERT_STRING_EQUAL(lines[ 5 ],
-       "0 0 0 0 0 0 0 0 0 0 0 0 0 0 255");
+  CU_ASSERT_STRING_EQUAL(lines[3], "255 0 0 0 0 0 0 0 0 0 0 0 0 0 0");
+  CU_ASSERT_STRING_EQUAL(lines[4], "0 0 0 0 0 0 0 128 0 0 0 0 0 0 0");
+  CU_ASSERT_STRING_EQUAL(lines[5], "0 0 0 0 0 0 0 0 0 0 0 0 0 0 255");
 
-    free( c.pixels );
-    free( ppm );
+  free(c.pixels);
+  free(ppm);
 }
- */
 
 /*
 Scenario​: Splitting long lines in PPM files
@@ -154,40 +147,37 @@ Scenario​: Splitting long lines in PPM files
 ​ 	​    """
 */
 
-/*
 void testSplittingLongLinesInPPM(void) {
-    Canvas c = canvas(10, 2);
-    Color col = color(1, 0.8, 0.6);
+  Canvas c = canvas(10, 2);
+  Color col = color(1, 0.8, 0.6);
 
-    for ( unsigned y = 0; y < 2; y++ )
-    {
-        for ( unsigned x = 0; x < 10; x++ )
-            write_pixel(c, x, y, col);
-    }
+  for (unsigned y = 0; y < 2; y++) {
+    for (unsigned x = 0; x < 10; x++) write_pixel(c, x, y, col);
+  }
 
-    char* ppm = canvas_to_ppm(c);
+  char* ppm = canvas_to_ppm(c);
 
-    char* lines[ 8 ];
-    lines[ 0 ] = strtok(ppm, "\n");
+  char* lines[8];
+  lines[0] = strtok(ppm, "\n");
 
-    for ( int idx = 1; idx < 8; idx++ )
-    {
-        lines[ idx ] = strtok(NULL, "\n");
-    }
+  for (int idx = 1; idx < 8; idx++) {
+    lines[idx] = strtok(NULL, "\n");
+  }
 
-    CU_ASSERT_STRING_EQUAL(lines[ 3 ],
-       "255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204");
-    CU_ASSERT_STRING_EQUAL(lines[ 4 ],
-       "153 255 204 153 255 204 153 255 204 153 255 204 153");
-    CU_ASSERT_STRING_EQUAL(lines[ 5 ],
-       "255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204");
-    CU_ASSERT_STRING_EQUAL(lines[ 6 ],
-       "153 255 204 153 255 204 153 255 204 153 255 204 153");
+  CU_ASSERT_STRING_EQUAL(
+      lines[3],
+      "255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204");
+  CU_ASSERT_STRING_EQUAL(lines[4],
+                         "153 255 204 153 255 204 153 255 204 153 255 204 153");
+  CU_ASSERT_STRING_EQUAL(
+      lines[5],
+      "255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204");
+  CU_ASSERT_STRING_EQUAL(lines[6],
+                         "153 255 204 153 255 204 153 255 204 153 255 204 153");
 
-    free( c.pixels );
-    free( ppm );
+  free(c.pixels);
+  free(ppm);
 }
-*/
 
 /*
         ​Scenario​: PPM files are terminated by a newline character
@@ -196,15 +186,13 @@ void testSplittingLongLinesInPPM(void) {
 ​ 	  ​Then​ ppm ends with a newline character
 */
 
-/*
 void testPPMTerminatedByNewlineChar(void) {
-    Canvas c = canvas(5, 3);
-    char* ppm = canvas_to_ppm(c);
-    unsigned int len = strlen(ppm);
+  Canvas c = canvas(5, 3);
+  char* ppm = canvas_to_ppm(c);
+  unsigned int len = strlen(ppm);
 
-    CU_ASSERT_EQUAL(ppm[len-1], '\n');
+  CU_ASSERT_EQUAL(ppm[len - 1], '\n');
 }
-*/
 
 /* The main() function for setting up and running the tests.
  * Returns a CUE_SUCCESS on successful running, another
@@ -225,19 +213,19 @@ int main() {
 
   /* add the tests to the suite */
   /* NOTE - ORDER IS IMPORTANT */
-  if (  // NULL == CU_add_test(pSuite, "test of testCreatingCanvas",
-        // testCreatingCanvas)
-      //|| NULL == CU_add_test(pSuite, "test of testWritingPixelsToCanvas",
-      // testWritingPixelsToCanvas)
+  if (NULL == CU_add_test(pSuite, "test of testCreatingCanvas",
+                          testCreatingCanvas) ||
+      NULL == CU_add_test(pSuite, "test of testWritingPixelsToCanvas",
+                          testWritingPixelsToCanvas) ||
       NULL == CU_add_test(pSuite, "test of testConstructingPPMHeader",
-                          testConstructingPPMHeader)
-      /* || NULL == CU_add_test(pSuite, "test of testConstructingPPMPixelData",
-      testConstructingPPMPixelData)
-      || NULL == CU_add_test(pSuite, "test of testSplittingLongLinesInPPM",
-      testSplittingLongLinesInPPM)
+                          testConstructingPPMHeader) ||
+      NULL == CU_add_test(pSuite, "test of testConstructingPPMPixelData",
+                          testConstructingPPMPixelData) ||
+      NULL == CU_add_test(pSuite, "test of testSplittingLongLinesInPPM",
+                          testSplittingLongLinesInPPM)
+      // extra credit
       || NULL == CU_add_test(pSuite, "test of testPPMTerminatedByNewlineChar",
-      testPPMTerminatedByNewlineChar) */
-  ) {
+                             testPPMTerminatedByNewlineChar)) {
     CU_cleanup_registry();
     return CU_get_error();
   }

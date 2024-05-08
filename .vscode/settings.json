@@ -1,20 +1,22 @@
 {
-    "C_Cpp.default.compilerPath": "C:\\msys64\\ucrt64\\bin\\gcc.exe",
-    "terminal.integrated.profiles.windows": {
-        "MSYS2": {
-            "path": "C:\\msys64\\usr\\bin\\bash.exe",
-            "args": ["--login", "-i"]
-        },
-        "MSYS2 MinGW 64-bit": {
-            "path": "C:\\msys64\\mingw64\\bin\\bash.exe",
-            "args": ["--login", "-i"]
-        }
-    },
-    "terminal.integrated.defaultProfile.windows": "bash (MSYS2)",
+    "files.autoSave": "onFocusChange",
+    "editor.minimap.enabled": true,
+    "window.zoomLevel": 0,
+    "terminal.integrated.shell.windows": "C:\\Windows\\System32\\wsl.exe",
     "C_Cpp.default.includePath": [
-        "C:\\msys64\\mingw64\\include"
+        "${workspaceFolder}/**"
     ],
-    "C_Cpp.default.intelliSenseMode": "gcc-x64",
-    "C_Cpp.default.configurationProvider": "ms-vscode.cpptools",
-    "git.path": "C:\\Program Files\\Git\\bin\\git.exe"
+    "C_Cpp.intelliSenseMode": "gcc-x64",
+    "C_Cpp.default.compilerPath": "/usr/bin/gcc",
+    "C_Cpp.default.cStandard": "c11",
+    "C_Cpp.default.cppStandard": "c++17",
+    "C_Cpp.default.defines": [],
+    "files.associations": {
+        "*.h": "c",
+        "*.c": "c"
+    },
+    "editor.formatOnSave": true,
+    "C_Cpp.clang_format_style": "file",
+    "C_Cpp.clang_format_fallbackStyle": "Google",
+    "C_Cpp.clang_format_sortIncludes": true
 }

@@ -1,6 +1,6 @@
 CC = gcc 
 LIBS = -lcunit -lm
-CFLAGS = -I. -g -w -I./.. -IC:/msys64/mingw64/include -mconsole
+CFLAGS = -I. -g -w -I./..
 TDIR = ./src/tuple
 CDIR = ./src/canvas
 RDIR = ./src/ray
