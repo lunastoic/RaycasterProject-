@@ -41,8 +41,6 @@ void testIntersectionObject(void) {
   CU_ASSERT_DOUBLE_EQUAL(i.object.radius, 10, EPSILON);
 }
 
-
-
 /*
 Scenario​: Aggregating intersection objects
 ​ 	  ​Given​ s ← sphere()
@@ -69,7 +67,6 @@ void testAggregatingIntersectionObjects(void) {
   free(xs.records);
 }
 
-
 /*
         ​Scenario​: Intersect sets the object on the intersection
 ​ 	  ​Given​ r ← ray(point(0, 0, -5), vector(0, 0, 1))
@@ -95,7 +92,6 @@ void testIntersectFunctionSetsSphereOnIntersectionObj(void) {
   CU_ASSERT_DOUBLE_EQUAL(xs.object.radius, 1, EPSILON);
 }
 
-
 /*
 Scenario​: The hit, when all intersections have positive t
 ​ 	  ​Given​ s ← sphere()
@@ -106,6 +102,7 @@ Scenario​: The hit, when all intersections have positive t
 ​ 	  ​Then​ i = i1
 */
 
+/*
 void testWhichIntersectionIsHitAllPosT(void) {
   Sphere s = sphere(point(0, 0, 0), 1);
   IRec i1 = intersection(1, s);
@@ -125,6 +122,7 @@ void testWhichIntersectionIsHitAllPosT(void) {
   free(xs.records);
 }
 
+
 /*
         ​Scenario​: The hit, when some intersections have negative t
 ​ 	  ​Given​ s ← sphere()
@@ -135,7 +133,6 @@ void testWhichIntersectionIsHitAllPosT(void) {
 ​ 	  ​Then​ i = i2
 */
 
-/*
 void testWhichIntersectinIsHitWithSomeNegT(void) {
   Sphere s = sphere(point(1, 0, 1), 1);
   IRec i1 = intersection(-1, s);
@@ -181,6 +178,7 @@ void testWhichIntersectinIsHitWithAllNegT(void) {
   free(xs.records);
 }
 
+
 /*
 Scenario​: The hit is always the lowest nonnegative intersection
 ​ 	  ​Given​ s ← sphere()
@@ -217,12 +215,10 @@ void testWhichIntersectinIsHitTestLowestNonnegT(void) {
   free(xs.records);
 }
 
-
 /* The main() function for setting up and running the tests.
  * Returns a CUE_SUCCESS on successful running, another
  * CUnit error code on failure.
  */
-
 int main() {
   CU_pSuite pSuite = NULL;
 
@@ -238,19 +234,23 @@ int main() {
 
   /* add the tests to the suite */
   /* NOTE - ORDER IS IMPORTANT */
-  if ( //NULL == CU_add_test(pSuite, "testIntersectionObject",
-                          //testIntersectionObject) 
-                          //||NULL == CU_add_test(pSuite, "testAggregatingIntersectionObjects", testAggregatingIntersectionObjects)
-                          // ||NULL == CU_add_test(pSuite,"testIntersectFunctionSetsSphereOnIntersectionObj",testIntersectFunctionSetsSphereOnIntersectionObj) 
-      //||
-      NULL == CU_add_test(pSuite, "testWhichIntersectionIsHitAllPosT", testWhichIntersectionIsHitAllPosT) 
-      /*||
+
+  if ( /*NULL == CU_add_test(pSuite, "testIntersectionObject",
+                          testIntersectionObject) ||
+      NULL == CU_add_test(pSuite, "testAggregatingIntersectionObjects",
+                          testAggregatingIntersectionObjects) ||
+      NULL == CU_add_test(pSuite,
+                          "testIntersectFunctionSetsSphereOnIntersectionObj",
+                          testIntersectFunctionSetsSphereOnIntersectionObj) ||
+      NULL == CU_add_test(pSuite, "testWhichIntersectionIsHitAllPosT",
+                          testWhichIntersectionIsHitAllPosT) || */
       NULL == CU_add_test(pSuite, "testWhichIntersectinIsHitWithSomeNegT",
-                          testWhichIntersectinIsHitWithSomeNegT) ||
+                          testWhichIntersectinIsHitWithSomeNegT) 
+                          /*||
       NULL == CU_add_test(pSuite, "testWhichIntersectinIsHitWithAllNegT",
                           testWhichIntersectinIsHitWithAllNegT) ||
       NULL == CU_add_test(pSuite, "testWhichIntersectinIsHitTestLowestNonnegT",
-                          testWhichIntersectinIsHitTestLowestNonnegT)*/ ) {
+                          testWhichIntersectinIsHitTestLowestNonnegT)*/) {
     CU_cleanup_registry();
     return CU_get_error();
   }
