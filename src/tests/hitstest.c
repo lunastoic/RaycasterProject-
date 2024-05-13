@@ -166,6 +166,7 @@ Scenario​: The hit, when all intersections have negative t
 ​ 	  ​Then​ i is nothing	​
 */
 
+/*
 void testWhichIntersectinIsHitWithAllNegT(void) {
   Sphere s = sphere(point(1, 0, 1), 1);
   IRec i1 = intersection(-2, s);
@@ -180,6 +181,8 @@ void testWhichIntersectinIsHitWithAllNegT(void) {
   free(xs.records);
 }
 
+
+
 /*
 Scenario​: The hit is always the lowest nonnegative intersection
 ​ 	  ​Given​ s ← sphere()
@@ -193,7 +196,6 @@ Scenario​: The hit is always the lowest nonnegative intersection
         ​
 */
 
-/*
 void testWhichIntersectinIsHitTestLowestNonnegT(void) {
   Sphere s = sphere(point(1, 0, 1), 1);
   IRec i1 = intersection(5, s);
@@ -236,22 +238,23 @@ int main() {
   /* add the tests to the suite */
   /* NOTE - ORDER IS IMPORTANT */
 
-  if ( /*NULL == CU_add_test(pSuite, "testIntersectionObject",
-                          testIntersectionObject) ||
-      NULL == CU_add_test(pSuite, "testAggregatingIntersectionObjects",
-                          testAggregatingIntersectionObjects) ||
-      NULL == CU_add_test(pSuite,
-                          "testIntersectFunctionSetsSphereOnIntersectionObj",
-                          testIntersectFunctionSetsSphereOnIntersectionObj) ||
-      NULL == CU_add_test(pSuite, "testWhichIntersectionIsHitAllPosT",
-                          testWhichIntersectionIsHitAllPosT) || 
-      NULL == CU_add_test(pSuite, "testWhichIntersectinIsHitWithSomeNegT",
-                          testWhichIntersectinIsHitWithSomeNegT) 
-                          || */
-      NULL == CU_add_test(pSuite, "testWhichIntersectinIsHitWithAllNegT", testWhichIntersectinIsHitWithAllNegT)
-                          /* ||
+  if (/*NULL == CU_add_test(pSuite, "testIntersectionObject",
+                         testIntersectionObject) ||
+     NULL == CU_add_test(pSuite, "testAggregatingIntersectionObjects",
+                         testAggregatingIntersectionObjects) ||
+     NULL == CU_add_test(pSuite,
+                         "testIntersectFunctionSetsSphereOnIntersectionObj",
+                         testIntersectFunctionSetsSphereOnIntersectionObj) ||
+     NULL == CU_add_test(pSuite, "testWhichIntersectionIsHitAllPosT",
+                         testWhichIntersectionIsHitAllPosT) ||
+     NULL == CU_add_test(pSuite, "testWhichIntersectinIsHitWithSomeNegT",
+                         testWhichIntersectinIsHitWithSomeNegT)
+                         ||
+     NULL == CU_add_test(pSuite, "testWhichIntersectinIsHitWithAllNegT",
+     testWhichIntersectinIsHitWithAllNegT)
+                         || */
       NULL == CU_add_test(pSuite, "testWhichIntersectinIsHitTestLowestNonnegT",
-                          testWhichIntersectinIsHitTestLowestNonnegT)*/) {
+                          testWhichIntersectinIsHitTestLowestNonnegT)) {
     CU_cleanup_registry();
     return CU_get_error();
   }
