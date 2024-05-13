@@ -54,6 +54,7 @@ Scenario​: Aggregating intersection objects
 ​ 	    ​And​ xs[1].t = 2
 */
 
+/*
 void testAggregatingIntersectionObjects(void) {
   Sphere s = sphere(point(0, 0, 0), 1);
   IRec i1 = intersection(1, s);
@@ -68,6 +69,7 @@ void testAggregatingIntersectionObjects(void) {
   free(xs.records);
 }
 
+
 /*
         ​Scenario​: Intersect sets the object on the intersection
 ​ 	  ​Given​ r ← ray(point(0, 0, -5), vector(0, 0, 1))
@@ -78,7 +80,6 @@ void testAggregatingIntersectionObjects(void) {
 ​ 	    ​And​ xs[1].object = s
 */
 
-/*
 void testIntersectFunctionSetsSphereOnIntersectionObj(void) {
   Ray r = ray(point(0, 0, -5), vector(0, 0, 1));
   Sphere s = sphere(point(0, 0, 0), 1);
@@ -239,12 +240,10 @@ int main() {
   /* NOTE - ORDER IS IMPORTANT */
   if ( //NULL == CU_add_test(pSuite, "testIntersectionObject",
                           //testIntersectionObject) 
-                          //||
-      NULL == CU_add_test(pSuite, "testAggregatingIntersectionObjects", testAggregatingIntersectionObjects)
-                          /* ||
-      NULL == CU_add_test(pSuite,
-                          "testIntersectFunctionSetsSphereOnIntersectionObj",
-                          testIntersectFunctionSetsSphereOnIntersectionObj) ||
+                          //||NULL == CU_add_test(pSuite, "testAggregatingIntersectionObjects", testAggregatingIntersectionObjects)
+                          // ||
+      NULL == CU_add_test(pSuite,"testIntersectFunctionSetsSphereOnIntersectionObj",testIntersectFunctionSetsSphereOnIntersectionObj) 
+      /*||
       NULL == CU_add_test(pSuite, "testWhichIntersectionIsHitAllPosT",
                           testWhichIntersectionIsHitAllPosT) ||
       NULL == CU_add_test(pSuite, "testWhichIntersectinIsHitWithSomeNegT",
