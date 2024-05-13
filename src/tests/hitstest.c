@@ -27,6 +27,8 @@ Scenario​: An intersection object encapsulates t and a sphere
 ​ 	  ​Then​ i.t = 3.5
 ​ 	    ​And​ i.object = s
 */
+
+/*
 void testIntersectionObject(void) {
   Sphere s = sphere(point(1, 1, 2), 10);
   IRec i = intersection(3.5, s);
@@ -39,6 +41,8 @@ void testIntersectionObject(void) {
   CU_ASSERT_DOUBLE_EQUAL(i.object.radius, 10, EPSILON);
 }
 
+
+
 /*
 Scenario​: Aggregating intersection objects
 ​ 	  ​Given​ s ← sphere()
@@ -50,7 +54,6 @@ Scenario​: Aggregating intersection objects
 ​ 	    ​And​ xs[1].t = 2
 */
 
-/*
 void testAggregatingIntersectionObjects(void) {
   Sphere s = sphere(point(0, 0, 0), 1);
   IRec i1 = intersection(1, s);
@@ -234,11 +237,11 @@ int main() {
 
   /* add the tests to the suite */
   /* NOTE - ORDER IS IMPORTANT */
-  if (NULL == CU_add_test(pSuite, "testIntersectionObject",
-                          testIntersectionObject) 
-                          /*||
-      NULL == CU_add_test(pSuite, "testAggregatingIntersectionObjects",
-                          testAggregatingIntersectionObjects) ||
+  if ( //NULL == CU_add_test(pSuite, "testIntersectionObject",
+                          //testIntersectionObject) 
+                          //||
+      NULL == CU_add_test(pSuite, "testAggregatingIntersectionObjects", testAggregatingIntersectionObjects)
+                          /* ||
       NULL == CU_add_test(pSuite,
                           "testIntersectFunctionSetsSphereOnIntersectionObj",
                           testIntersectFunctionSetsSphereOnIntersectionObj) ||
