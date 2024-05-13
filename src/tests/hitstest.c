@@ -133,6 +133,7 @@ void testWhichIntersectionIsHitAllPosT(void) {
 ​ 	  ​Then​ i = i2
 */
 
+/*
 void testWhichIntersectinIsHitWithSomeNegT(void) {
   Sphere s = sphere(point(1, 0, 1), 1);
   IRec i1 = intersection(-1, s);
@@ -153,6 +154,8 @@ void testWhichIntersectinIsHitWithSomeNegT(void) {
   free(xs.records);
 }
 
+
+
 /*
 Scenario​: The hit, when all intersections have negative t
 ​ 	  ​Given​ s ← sphere()
@@ -163,7 +166,6 @@ Scenario​: The hit, when all intersections have negative t
 ​ 	  ​Then​ i is nothing	​
 */
 
-/*
 void testWhichIntersectinIsHitWithAllNegT(void) {
   Sphere s = sphere(point(1, 0, 1), 1);
   IRec i1 = intersection(-2, s);
@@ -177,7 +179,6 @@ void testWhichIntersectinIsHitWithAllNegT(void) {
 
   free(xs.records);
 }
-
 
 /*
 Scenario​: The hit is always the lowest nonnegative intersection
@@ -243,12 +244,12 @@ int main() {
                           "testIntersectFunctionSetsSphereOnIntersectionObj",
                           testIntersectFunctionSetsSphereOnIntersectionObj) ||
       NULL == CU_add_test(pSuite, "testWhichIntersectionIsHitAllPosT",
-                          testWhichIntersectionIsHitAllPosT) || */
+                          testWhichIntersectionIsHitAllPosT) || 
       NULL == CU_add_test(pSuite, "testWhichIntersectinIsHitWithSomeNegT",
                           testWhichIntersectinIsHitWithSomeNegT) 
-                          /*||
-      NULL == CU_add_test(pSuite, "testWhichIntersectinIsHitWithAllNegT",
-                          testWhichIntersectinIsHitWithAllNegT) ||
+                          || */
+      NULL == CU_add_test(pSuite, "testWhichIntersectinIsHitWithAllNegT", testWhichIntersectinIsHitWithAllNegT)
+                          /* ||
       NULL == CU_add_test(pSuite, "testWhichIntersectinIsHitTestLowestNonnegT",
                           testWhichIntersectinIsHitTestLowestNonnegT)*/) {
     CU_cleanup_registry();
