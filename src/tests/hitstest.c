@@ -80,6 +80,7 @@ void testAggregatingIntersectionObjects(void) {
 ​ 	    ​And​ xs[1].object = s
 */
 
+/*
 void testIntersectFunctionSetsSphereOnIntersectionObj(void) {
   Ray r = ray(point(0, 0, -5), vector(0, 0, 1));
   Sphere s = sphere(point(0, 0, 0), 1);
@@ -94,6 +95,7 @@ void testIntersectFunctionSetsSphereOnIntersectionObj(void) {
   CU_ASSERT_DOUBLE_EQUAL(xs.object.radius, 1, EPSILON);
 }
 
+
 /*
 Scenario​: The hit, when all intersections have positive t
 ​ 	  ​Given​ s ← sphere()
@@ -104,7 +106,6 @@ Scenario​: The hit, when all intersections have positive t
 ​ 	  ​Then​ i = i1
 */
 
-/*
 void testWhichIntersectionIsHitAllPosT(void) {
   Sphere s = sphere(point(0, 0, 0), 1);
   IRec i1 = intersection(1, s);
@@ -123,7 +124,6 @@ void testWhichIntersectionIsHitAllPosT(void) {
 
   free(xs.records);
 }
-
 
 /*
         ​Scenario​: The hit, when some intersections have negative t
@@ -241,11 +241,10 @@ int main() {
   if ( //NULL == CU_add_test(pSuite, "testIntersectionObject",
                           //testIntersectionObject) 
                           //||NULL == CU_add_test(pSuite, "testAggregatingIntersectionObjects", testAggregatingIntersectionObjects)
-                          // ||
-      NULL == CU_add_test(pSuite,"testIntersectFunctionSetsSphereOnIntersectionObj",testIntersectFunctionSetsSphereOnIntersectionObj) 
+                          // ||NULL == CU_add_test(pSuite,"testIntersectFunctionSetsSphereOnIntersectionObj",testIntersectFunctionSetsSphereOnIntersectionObj) 
+      //||
+      NULL == CU_add_test(pSuite, "testWhichIntersectionIsHitAllPosT", testWhichIntersectionIsHitAllPosT) 
       /*||
-      NULL == CU_add_test(pSuite, "testWhichIntersectionIsHitAllPosT",
-                          testWhichIntersectionIsHitAllPosT) ||
       NULL == CU_add_test(pSuite, "testWhichIntersectinIsHitWithSomeNegT",
                           testWhichIntersectinIsHitWithSomeNegT) ||
       NULL == CU_add_test(pSuite, "testWhichIntersectinIsHitWithAllNegT",
